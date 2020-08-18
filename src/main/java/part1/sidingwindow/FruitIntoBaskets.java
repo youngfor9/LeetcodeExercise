@@ -6,39 +6,39 @@ import java.util.Map;
 
 /**
  * Leetcode链接：https://leetcode.com/problems/fruit-into-baskets/
- *In a row of trees, the i-th tree produces fruit with type tree[i].
- *
+ * In a row of trees, the i-th tree produces fruit with type tree[i].
+ * <p>
  * You start at any tree of your choice, then repeatedly perform the following steps:
- *
+ * <p>
  * Add one piece of fruit from this tree to your baskets.  If you cannot, stop.
  * Move to the next tree to the right of the current tree.  If there is no tree to the right, stop.
  * Note that you do not have any choice after the initial choice of starting tree: you must perform step 1, then step 2, then back to step 1, then step 2, and so on until you stop.
- *
+ * <p>
  * You have two baskets, and each basket can carry any quantity of fruit, but you want each basket to only carry one type of fruit each.
- *
+ * <p>
  * What is the total amount of fruit you can collect with this procedure?
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
  * Example 1:
- *
+ * <p>
  * Input: [1,2,1]
  * Output: 3
  * Explanation: We can collect [1,2,1].
  * Example 2:
- *
+ * <p>
  * Input: [0,1,2,2]
  * Output: 3
  * Explanation: We can collect [1,2,2].
  * If we started at the first tree, we would only collect [0, 1].
  * Example 3:
- *
+ * <p>
  * Input: [1,2,3,2,2]
  * Output: 4
  * Explanation: We can collect [2,3,2,2].
  * If we started at the first tree, we would only collect [1, 2].
  * Example 4:
- *
+ * <p>
  * Input: [3,3,3,1,2,1,1,2,3,3,4]
  * Output: 5
  * Explanation: We can collect [1,2,1,1,2].
@@ -49,28 +49,25 @@ import java.util.Map;
  */
 public class FruitIntoBaskets {
     public static void main(String[] args) {
-        int[] arr = {1, 6, 3, 2, 1, 3, 9};
+        int[] arr = {1, 2, 2, 1, 9, 9, 7, 5, 2};
         int i = mostFruits(arr, 2);
         System.out.println(i);
     }
-
+    //答案借鉴：https://leetcode.com/problems/fruit-into-baskets/discuss/170740/JavaC%2B%2BPython-Sliding-Window-for-K-Elements
     public static int mostFruits(int[] arr, int k) {
-        int length = arr.length;
-        Map<Integer, ArrayList<Integer>> map = new HashMap<>(length);
-        int max = 0, index = 0;
-        for (int i = 0; i < arr.length; i++) {
-            ArrayList<Integer> list = new ArrayList<>();
-            ArrayList<Integer> integers = map.get(map.get(arr[i]));
-            if (null == integers) {
-                list.add(i);
-                map.put(arr[i], list);
+        int begin = 0, end = 0, type = 0, max = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        while (end < arr.length) {
+            int in = arr[end++];
+            if (map.getOrDefault(in, 0) == 0) type++;
+            map.put(in, map.getOrDefault(in, 0) + 1);
+            while (type > k) {
+                int out = arr[begin++];
+                if (map.put(out, map.get(out) - 1) == 1) type--;
             }
-            int size = integers.size();
-            if (size + 1 == k) {
-                max = Math.max(max, list.get(size) - index);
-                index = list.get(0) + 1;
-            }
+            max = Math.max(max, end - begin);
         }
-        return 1;
+        return max;
     }
+
 }

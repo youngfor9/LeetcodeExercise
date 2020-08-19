@@ -1,5 +1,7 @@
 package part2.DoublePoints;
 
+import org.junit.Test;
+
 import java.util.Arrays;
 
 /**
@@ -19,14 +21,15 @@ import java.util.Arrays;
  * Output: [4,9,9,49,121]
  */
 public class SquaresOfStArray {
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         int[] arr = {-4, -1, 0, 3, 10};
         int[] squares = squares(arr);
         System.out.println(Arrays.toString(squares));
     }
 
 
-    private static int[] squares(int[] arr) {
+    private int[] squares(int[] arr) {
         int len = arr.length, start = 0, end = len - 1, index = len - 1;
         int[] res = new int[len];
         while (start < end) {

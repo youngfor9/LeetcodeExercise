@@ -8,7 +8,6 @@ import org.junit.Test;
  */
 public class LinkedListCycle {
 
-
     public static boolean hasCycle(ListNode head) {
         ListNode slow = head, fast = head;
         while (null != fast && null != fast.next) {

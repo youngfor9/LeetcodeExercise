@@ -1,4 +1,4 @@
-package part5.CyclicSort;
+package part3.FastAndSlowPointers;
 
 import org.junit.Test;
 

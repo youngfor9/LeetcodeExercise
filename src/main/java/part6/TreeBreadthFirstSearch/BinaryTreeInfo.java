@@ -9,8 +9,10 @@ public  class BinaryTreeInfo {
         TreeNode treeNode3 = new TreeNode(4);
         TreeNode treeNode4 = new TreeNode(5);
         TreeNode treeNode5 = new TreeNode(6);
+        TreeNode treeNode6 = new TreeNode(7);
         treeNode.left = treeNode1;
         treeNode.right = treeNode2;
+        treeNode1.left = treeNode6;
         treeNode2.left = treeNode3;
         treeNode2.right = treeNode4;
         treeNode3.left = treeNode5;

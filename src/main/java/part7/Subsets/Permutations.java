@@ -9,7 +9,7 @@ import java.util.List;
  * Permutations
  * https://leetcode.com/problems/permutations/
  * 给由不同数字组成的数组，返回所有可能的排列
- * Example:
+ * Example:11
  * <p>
  * Input: [1,2,3]
  * Output:
